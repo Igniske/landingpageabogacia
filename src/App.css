@@ -1,0 +1,7 @@
+.hidden-text {
+    display: none;
+  }
+
+  .gradient-bg {
+    background: linear-gradient(to bottom, #8B4513, #000000);
+  }
