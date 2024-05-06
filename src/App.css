@@ -5,3 +5,43 @@
   .gradient-bg {
     background: linear-gradient(to bottom, #8B4513, #000000);
   }
+
+  .h-600px{
+    height: 600px;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-slide-left {
+    animation: slideInFromLeft 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-right {
+    animation: slideInFromRight 0.5s ease-out forwards;
+  }
+  
+  .hide {
+    display: none;
+  }
+  
+  
