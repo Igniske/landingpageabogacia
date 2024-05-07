@@ -45,13 +45,13 @@
   }
   
   .bg-gray-box{
-    background-color: darkgrey;
+    background-color: rgb(228, 228, 228);
   }
 
   .bg-blue-box{
-    background-color: rgb(53, 72, 238);
+    background-color: rgba(42, 120, 184, 0.836);
   }
 
   .bg-orange-box{
-    background-color: rgb(240, 140, 27);
+    background-color: rgba(240, 141, 27, 0.836);
   }
