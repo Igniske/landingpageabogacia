@@ -4,6 +4,7 @@ import Home from '../components/Home'
 import Icons from '../components/Icons'
 import Footer from '../components/Footer/'
 import Form from '../components/Form'
+import Boxes from '../components/Boxes'
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
     <>
       <Navbar></Navbar>
       <Home></Home>
-      <Icons></Icons>
+      <Boxes></Boxes>
       <Form></Form>
       <Footer></Footer>
     </>

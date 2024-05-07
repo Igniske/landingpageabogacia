@@ -44,4 +44,14 @@
     display: none;
   }
   
-  
+  .bg-gray-box{
+    background-color: darkgrey;
+  }
+
+  .bg-blue-box{
+    background-color: rgb(53, 72, 238);
+  }
+
+  .bg-orange-box{
+    background-color: rgb(240, 140, 27);
+  }
