@@ -7,7 +7,7 @@ function Home() {
         <div
           style={{
             backgroundImage:
-              "url('https://i.ibb.co/y6PS83B/abogacia.jpg')",
+              "url('https://i.ibb.co/c63LNmX/abogacia.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
