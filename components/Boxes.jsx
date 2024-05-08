@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const BoxComponent = () => {
   const [maximizedBox, setMaximizedBox] = useState(null);
@@ -43,7 +44,6 @@ const BoxComponent = () => {
     </div>
   );
 
-
   const boxData = [
     { id: 1, content: box1Content, bgColor: "gray" },
     { id: 2, content: box2Content, bgColor: "blue" },
@@ -64,38 +64,36 @@ const BoxComponent = () => {
 
   return (
     <div className="bg-black py-16">
-        <div className="flex flex-wrap mx-4 md:mx-0 h-full relative">
+      <div className="flex flex-wrap mx-4 md:mx-0 h-full relative">
         {boxData.map((box) => (
-            <div
+          <motion.div
             key={box.id}
+            initial={{ scale: 1 }} // Initial scale
+            whileHover={{ scale: 1.05 }} // Scale up on hover
+            whileTap={{ scale: 0.95 }} // Scale down on tap
             className={`w-1/2 md:w-1/3 h-48 md:h-96 bg-${box.bgColor}-box ${
-                maximizedBox === box.id ? "maximized" : "normal"
+              maximizedBox === box.id ? "maximized" : "normal"
             } transition-all duration-500 ease-in-out`}
             onClick={() => handleBoxClick(box.id)}
-            >
+          >
             <div className="border border-gray-300 h-full w-full flex items-center justify-center cursor-pointer">
-                <div>{box.content}</div>
+              <div>{box.content}</div>
             </div>
-            </div>
+          </motion.div>
         ))}
         {maximizedBox && (
-            <div className="fixed top-0 left-0 w-full h-full z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-            <div
-                className={`bg-white w-full h-full p-8 maximized-content relative`}
-            >
-                <button
-                className="absolute top-4 right-4 text-3xl"
-                onClick={handleCloseBox}
-                >
+          <div className="fixed top-0 left-0 w-full h-full z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+            <div className={`bg-white w-full h-full p-8 maximized-content relative`}>
+              <button className="absolute top-4 right-4 text-3xl" onClick={handleCloseBox}>
                 &#10005;
-                </button>
-                <div className="text-4xl font-bold mb-4">
+              </button>
+              <div className="text-4xl font-bold mb-4">
                 {boxData.find((box) => box.id === maximizedBox).content}
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         )}
-        </div>
+      </div>
     </div>
   );
 };
