@@ -39,7 +39,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="bg-red-800 w-full flex justify-center items-center">
+      <div className="footer-bg w-full flex justify-center items-center">
         <p className="text-xl text-gray-400">Nombre 2024 | Todos los derechos reservados</p>
       </div>
     </>

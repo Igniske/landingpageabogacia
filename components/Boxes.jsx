@@ -64,14 +64,14 @@ const BoxComponent = () => {
 
   return (
     <div className="bg-black py-16">
-      <div className="flex flex-wrap mx-4 md:mx-0 h-full relative">
+      <div className="flex flex-wrap mx-4 h-full relative">
         {boxData.map((box) => (
           <motion.div
             key={box.id}
             initial={{ scale: 1 }} // Initial scale
             whileHover={{ scale: 1.05 }} // Scale up on hover
             whileTap={{ scale: 0.95 }} // Scale down on tap
-            className={`w-1/2 md:w-1/3 h-48 md:h-96 bg-${box.bgColor}-box ${
+            className={`w-1/2 md:w-1/4 h-48 md:h-96 bg-${box.bgColor}-box ${
               maximizedBox === box.id ? "maximized" : "normal"
             } transition-all duration-500 ease-in-out`}
             onClick={() => handleBoxClick(box.id)}
