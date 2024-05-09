@@ -1,8 +1,46 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const BoxComponent = () => {
   const [maximizedBox, setMaximizedBox] = useState(null);
+  const [showSpecialization, setShowSpecialization] = useState(false);
+  const specializationControls = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      specializationControls.start({ opacity: 1, y: 0 });
+    }
+  }, [inView, specializationControls]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const triggerOffset = windowHeight / 2; // Adjust this value as needed
+      
+      if (scrollPosition > triggerOffset) {
+        animateBoxes();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const animateBoxes = () => {
+    const boxes = document.querySelectorAll(".box");
+    boxes.forEach((box, index) => {
+      setTimeout(() => {
+        box.style.opacity = 1;
+        box.style.transform = "translateX(0)";
+      }, index * 200); // Adjust the delay time as needed
+    });
+  };
 
   // Define content variables
   const box1Content = (
@@ -23,34 +61,10 @@ const BoxComponent = () => {
     </div>
   );
 
-  const box4Content = (
-    <div>
-      <h1>Box 2</h1>
-      <p>This is some content for Box 2</p>
-    </div>
-  );
-
-  const box5Content = (
-    <div>
-      <h1>Box 2</h1>
-      <p>This is some content for Box 2</p>
-    </div>
-  );
-
-  const box6Content = (
-    <div>
-      <h1>Box 2</h1>
-      <p>This is some content for Box 2</p>
-    </div>
-  );
-
   const boxData = [
     { id: 1, content: box1Content, bgColor: "gray" },
     { id: 2, content: box2Content, bgColor: "blue" },
     { id: 3, content: box3Content, bgColor: "orange" },
-    { id: 4, content: box4Content, bgColor: "gray" },
-    { id: 5, content: box5Content, bgColor: "blue" },
-    { id: 6, content: box6Content, bgColor: "orange" },
     // Add more box data with content variables
   ];
 
@@ -64,16 +78,27 @@ const BoxComponent = () => {
 
   return (
     <div className="bg-black py-16">
-      <div className="flex flex-wrap mx-4 h-full relative">
-        {boxData.map((box) => (
+      <div className="text-center my-16">
+        <motion.h2
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="text-3xl md:text-4xl font-semibold text-white"
+        >
+          Nos especializamos en:
+        </motion.h2>
+      </div>
+      <div className="flex flex-wrap mx-4 md:mx-32 h-full relative">
+        {boxData.map((box, index) => (
           <motion.div
             key={box.id}
-            initial={{ scale: 1 }} // Initial scale
-            whileHover={{ scale: 1.05 }} // Scale up on hover
-            whileTap={{ scale: 0.95 }} // Scale down on tap
+            initial={{ opacity: 0, x: index % 2 === 0 ? "-100vw" : "100vw" }} // Initial position
+            animate={{ opacity: 1, x: 0 }} // Final position
+            transition={{ duration: 0.5, delay: index * 0.2 }} // Animation duration and delay
             className={`w-1/2 md:w-1/4 h-48 md:h-96 bg-${box.bgColor}-box ${
               maximizedBox === box.id ? "maximized" : "normal"
-            } transition-all duration-500 ease-in-out`}
+            } transition-all duration-500 ease-in-out box`}
             onClick={() => handleBoxClick(box.id)}
           >
             <div className="border border-gray-300 h-full w-full flex items-center justify-center cursor-pointer">

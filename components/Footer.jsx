@@ -24,7 +24,7 @@ function Footer() {
             transition={{ duration: 1 }} // Animation duration
             className="text-5xl font-bold"
           >
-            NOMBRE
+            ALEJANDRO LOPEZ
           </motion.h2>
           <div className="w-4/5 md:w-1/2 flex pt-8 m-auto">
             <motion.p
@@ -40,7 +40,7 @@ function Footer() {
       </div>
 
       <div className="footer-bg w-full flex justify-center items-center">
-        <p className="text-xl text-gray-400">Nombre 2024 | Todos los derechos reservados</p>
+        <p className="text-xl text-gray-400">Alejandro Lopez 2024 | Todos los derechos reservados</p>
       </div>
     </>
   );
