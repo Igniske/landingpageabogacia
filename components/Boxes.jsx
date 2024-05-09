@@ -87,7 +87,7 @@ const BoxComponent = () => {
           Nos especializamos en:
         </motion.h2>
       </div>
-      <div className="flex flex-wrap mx-4 md:mx-32 h-full relative">
+      <div className="flex flex-wrap mx-8 md:mx-32 h-full relative">
         {boxData.map((box, index) => (
           <motion.div
             key={box.id}
