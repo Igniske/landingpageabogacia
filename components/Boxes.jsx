@@ -3,7 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const BoxComponent = () => {
-  const [maximizedBox, setMaximizedBox] = useState(null);
+  const [selectedBox, setSelectedBox] = useState(null);
   const [showSpecialization, setShowSpecialization] = useState(false);
   const specializationControls = useAnimation();
   const [ref, inView] = useInView();
@@ -14,12 +14,18 @@ const BoxComponent = () => {
     }
   }, [inView, specializationControls]);
 
+  const handleBoxClick = (boxId) => {
+    setSelectedBox((prevSelectedBox) =>
+      prevSelectedBox === boxId ? null : boxId
+    );
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const triggerOffset = windowHeight / 2; // Adjust this value as needed
-      
+
       if (scrollPosition > triggerOffset) {
         animateBoxes();
       }
@@ -68,14 +74,6 @@ const BoxComponent = () => {
     // Add more box data with content variables
   ];
 
-  const handleBoxClick = (boxId) => {
-    setMaximizedBox(boxId);
-  };
-
-  const handleCloseBox = () => {
-    setMaximizedBox(null);
-  };
-
   return (
     <div className="bg-black py-16">
       <div className="text-center my-16">
@@ -93,11 +91,15 @@ const BoxComponent = () => {
         {boxData.map((box, index) => (
           <motion.div
             key={box.id}
-            initial={{ opacity: 0, x: index % 2 === 0 ? "-100vw" : "100vw" }} // Initial position
-            animate={{ opacity: 1, x: 0 }} // Final position
+            initial={{ opacity: 0, x: index % 2 === 0 ? "-50%" : "50%", scale: 1 }} // Initial position and size
+            animate={{
+              opacity: 1,
+              x: 0,
+              scale: selectedBox === box.id ? 1.2 : 1 // Scale up the selected box
+            }}
             transition={{ duration: 0.5, delay: index * 0.2 }} // Animation duration and delay
-            className={`w-1/2 md:w-1/4 h-48 md:h-96 bg-${box.bgColor}-box ${
-              maximizedBox === box.id ? "maximized" : "normal"
+            className={`w-full md:w-1/3 h-48 md:h-96 bg-${box.bgColor}-box ${
+              selectedBox === box.id ? "maximized" : "normal"
             } transition-all duration-500 ease-in-out box`}
             onClick={() => handleBoxClick(box.id)}
           >
@@ -106,18 +108,6 @@ const BoxComponent = () => {
             </div>
           </motion.div>
         ))}
-        {maximizedBox && (
-          <div className="fixed top-0 left-0 w-full h-full z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-            <div className={`bg-white w-full h-full p-8 maximized-content relative`}>
-              <button className="absolute top-4 right-4 text-3xl" onClick={handleCloseBox}>
-                &#10005;
-              </button>
-              <div className="text-4xl font-bold mb-4">
-                {boxData.find((box) => box.id === maximizedBox).content}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );
