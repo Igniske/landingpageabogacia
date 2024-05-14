@@ -1,6 +1,8 @@
 .hidden-text {
-    display: none;
-  }
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Adjust the duration and timing function as needed */
+}
 
   .gradient-bg {
     background: linear-gradient(to bottom, #000000,#af5718);
@@ -59,3 +61,22 @@
   .bg-orange-box{
     background-color: rgba(240, 141, 27, 0.836);
   }
+
+  .hidden-text {
+    display: none;
+    opacity: 0;
+  }
+  
+  .visible-text {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
