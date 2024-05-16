@@ -15,14 +15,14 @@ function Footer() {
 
   return (
     <>
-      <div className='gradient-bg flex justify-center items-center h-full'>
+      <div className=' flex justify-center items-center h-full'>
         <div className="text-white py-36 flex flex-col text-center">
           <motion.h2
             ref={ref}
             initial={{ opacity: 0, y: 20 }} // Initial animation state
             animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate when in view
             transition={{ duration: 1 }} // Animation duration
-            className="text-5xl font-bold"
+            className="text-5xl text-color font-bold"
           >
             ALEJANDRO LOPEZ
           </motion.h2>
@@ -31,7 +31,7 @@ function Footer() {
               initial={{ opacity: 0, y: 20 }} // Initial animation state
               animate={isInView ? { opacity: 1, y: 0 } : {}} // Animate when in view
               transition={{ duration: 1, delay: 0.5 }} // Animation duration with a delay
-              className="mt-4"
+              className="mt-4 text-black"
             >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi magni similique doloribus quidem in perferendis fugiat, exercitationem eveniet veritatis numquam? Quos, dolores. In repudiandae soluta quas pariatur expedita magni ad!
             </motion.p>
@@ -40,7 +40,7 @@ function Footer() {
       </div>
 
       <div className="footer-bg w-full flex justify-center items-center">
-        <p className="text-xl text-gray-400">Alejandro Lopez 2024 | Todos los derechos reservados</p>
+        <p className="text-xl text-gray-200">Alejandro Lopez 2024 | Todos los derechos reservados</p>
       </div>
     </>
   );
