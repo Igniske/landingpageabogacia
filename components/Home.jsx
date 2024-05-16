@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-
 function Home() {
   return (
     <>
@@ -7,7 +6,7 @@ function Home() {
         <div
           style={{
             backgroundImage:
-              "url('https://i.ibb.co/c63LNmX/abogacia.jpg')",
+              "url('https://i.ibb.co/BL0gHXj/background-image.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

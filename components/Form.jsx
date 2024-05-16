@@ -15,7 +15,7 @@ function Form() {
 
   return (
     <>
-      <div className="bg-black py-16">
+      <div className="form-bg py-16">
         <div className="w-5/6 md:w-4/5 m-auto">
           <motion.p
             ref={ref}

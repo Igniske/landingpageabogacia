@@ -7,10 +7,10 @@ import Imagen1 from '../src/assets/seguridad.png';
 import Imagen3 from '../src/assets/image3.png';
 
 function Icon({ image, title, description, index, visibleTextIndex, toggleTextVisibility, animationApplied }) {
-  const animationClass = animationApplied ? (index % 2 === 0 ? 'animate-slide-left' : 'animate-slide-right') : '';
+  const animationClass = animationApplied ? (index % 2 === 0 ? 'animate-slide-left visible' : 'animate-slide-right visible') : '';
 
   return (
-    <div className={`flex flex-col justify-center items-center relative container hide ${animationClass}`}>
+    <div className={`flex flex-col px-8 md:px-0 justify-center items-center relative container ${animationClass}`}>
       <img src={image} className="h-48 w-48" onClick={() => toggleTextVisibility(index)} />
       <h3
         className="text-black hover:text-red-900 cursor-pointer my-4 text-4xl text-center toggle-text"
@@ -18,12 +18,13 @@ function Icon({ image, title, description, index, visibleTextIndex, toggleTextVi
       >
         {title}
       </h3>
-      <div className={`w-2/3 md:w-1/2 text-black text-lg text-justify ${visibleTextIndex === index ? 'visible-text' : 'hidden-text'}`}>
-        <p className="text-black text-lg text-justify">{description}</p>
+      <div className={`w-full md:w-2/3 text-black text-lg text-justify ${visibleTextIndex === index ? 'visible-text' : 'hidden-text'}`}>
+        <p className="text-black text-lg md:text-justify">{description}</p>
       </div>
     </div>
   );
 }
+
 
 function Icons() {
   const iconsRef = useRef(null);
